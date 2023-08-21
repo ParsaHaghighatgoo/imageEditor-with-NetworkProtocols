@@ -1,0 +1,791 @@
+%%% Plantilla creada para Proyecto de Investigación
+%%% del Bachillerato de Excelencia, IES San Mateo, Madrid
+%%% Por Roberto Rodríguez del Río y
+%%% María Esteban García
+%%% rrdelrio@ucm.es
+%%% mariaesteban.edu@gmail.com
+%%% Ver 2.0, Junio 2023
+\documentclass[a4paper,12pt]{article} 
+
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{csquotes}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb} 
+%\usepackage{palatino}
+
+\usepackage{graphicx} 
+\usepackage[hidelinks]{hyperref} %Para que aparezcan con colores las hiperreferencias hay que quitar la opción hidelinks
+\usepackage{wrapfig}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{mdframed}
+\usepackage{float}
+\usepackage[most]{tcolorbox}
+\usepackage{eurosym}
+\usepackage{color}
+\usepackage{titling}
+\usepackage{lipsum}
+\usepackage{minted}
+\usepackage{tocbibind} 
+\usepackage{newpxtext}
+
+\usepackage[backend=biber,style=numeric,giveninits=true]{biblatex} %Para gestionar la bibliografía en un archivo aparte
+\addbibresource{bibliografia.bib} %Archivo en el que está la bibliografía
+
+
+\usepackage[left=3cm,right=3cm,top=3cm,bottom=4cm]{geometry}
+
+
+\pagestyle{fancy}
+
+
+%%% Para las cabeceras
+\newcommand{\hsp}{\hspace{20pt}}
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+\headheight=50pt
+%%% 
+\newcommand{\vacio}{\phantom{relleno}}
+
+%%% Para que las ecuaciones se numeren
+%%% con el número de sección y el de ecuación.
+\renewcommand{\theequation}{\thesection.\arabic{equation}}
+
+
+% Color azul para algunos 
+% textos de la portada
+\definecolor{azulportada}{rgb}{0.21176,0.37255,0.56863}
+
+%%%% Azul para textos de headings
+\definecolor{azulinterior}{rgb}{0.21176,0.37255,0.56863}
+
+\author{WITH NETWORK PROTOCOL}
+\title{IMAGE PROCESSING }
+\newcommand{\director}{Professor : Dr. Ali Hamzeh}
+
+\linespread{1.25}
+
+\begin{document}
+
+\begin{titlepage} 
+	\newgeometry{left=0.6cm,top=1.3cm,bottom=1.2cm}
+
+\fbox{\parbox[c]{18.5cm}{
+\begin{center}
+\vspace{1.5cm}
+{\fontfamily{ppl}\fontsize{24}{6}\selectfont{}}\\
+[1em]
+{\fontfamily{ppl}\fontsize{16}{5}\selectfont{}}\\
+[1em]
+{\fontfamily{ppl}\fontsize{24}{5}\selectfont{C Programming}}\\
+[2.6cm]
+% Autor del trabajo de investigación
+\textcolor{azulportada}{\fontfamily{ppl}\fontsize{16}{5}\selectfont{\theauthor}}\\
+[1cm]
+% Título del trabajo
+\textcolor{azulportada}
+{\fontfamily{ppl}\fontsize{30}{5}\selectfont{\textsc{\MakeUppercase{\thetitle}}}}\\
+%{\Huge\textbf{\thetitle}}\\
+[1cm]
+\includegraphics[width=5.5cm]{R.png}
+\\[2cm]
+{\fontfamily{ppl}\fontsize{16}{5}\selectfont{Ali Sharafian - Parsa HaghighatGoo}}\\
+[0.5cm]
+{\fontfamily{ppl}\fontsize{16}{5}\selectfont{\director}}\\
+[2cm]
+{\fontfamily{ppl}\fontsize{16}{5}\selectfont{semester spring - 2023}}\\
+[2cm]
+\end{center}
+}}
+
+\restoregeometry
+ %%%% Volvemos a la estructura de la página normal
+
+\end{titlepage}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+{%\Large
+
+\newpage
+
+%%%Encabezamiento y pie de página
+%%% También se genera automáticamente
+%%% Mejor no tocarlo mucho.
+\renewcommand{\headrulewidth}{0.5pt}
+\fancyhead[R]{
+	\textcolor{azulinterior}{\fontfamily{ppl}\fontsize{14}{4}\selectfont{\textbf{\thetitle}}}\\
+\textcolor{azulportada}{\fontfamily{ppl}\fontsize{10}{3}\selectfont{}}\\
+{\fontfamily{ppl}\fontsize{10}{3}\selectfont{\theauthor}}}
+\fancyhead[L]{\vacio}
+
+\renewcommand{\footrulewidth}{0.5pt}
+\fancyfoot[L]{\footnotesize}
+\fancyfoot[C]{\vacio}
+\fancyfoot[R]{\footnotesize Page \thepage}
+
+
+%%%%%%%%%%%%%%%%%%%%
+
+\
+
+\vacio
+
+\
+
+\subsection*{INTRODUCTION}
+In this project, we designed a program using C programming language in which a photo is given by the user and 20 filters are given to the user to apply on the photo. This program supports 3 types of photo formats: jpeg - jpg - png - bmp.\\\
+The user has 3 ways to give photos and input to the program:\\\ 
+1. by giving the address of the photo on the system\\\
+2. sending the image to app's email (parsaali0002@gmail.com)\\\
+3. by giving the url of the image\\\
+\
+\
+\
+\
+
+\hrule
+
+\
+
+\
+
+\newpage
+
+
+\tableofcontents
+
+\newpage
+
+
+
+\section{Input}
+
+Here we talk about how the user can give the picture to the program.\\\
+There is 3 way for doing it:
+%
+\subsection{System Files}
+The first way is using pictures which exist in the computer.\\\
+The user should write the path of pictures.
+\\\
+\subsection{Sending The Picture To Program's E-Mail}
+the second way is that the user would email the desired picture to the email address (parsaali0002@gmail.com). we use the curllib for connecting to email and fetching attachments.\\\
+
+\subsection{Giving The Photo From Url}
+the third way is the user should give the URL address relevant to desired picture to the program the program downloads the picture and make it ready for future procceses.\\\
+In this case the user can choose between two way:\\\
+• Url with socket\\\
+• Url with curl\\\
+
+
+\newpage
+\section{Photo Filters}
+In this program, we have designed 20 filters for the user so that the user can apply them on the desired photo.
+\\\
+• Hue\\\
+• Solarize \\\
+• Revert\\\
+• Grayscale\\\
+• Sepia\\\
+• Brn\\\
+• Off Grid \\\
+• Cybr\\\
+• Sharpen\\\
+• Noise\\\
+• Vin4\\\
+• Warm color\\\
+• Comic\\\
+• Oil Painting\\\
+• Water Color\\\
+• Motion Blur \\\
+• Polygon\\\
+• Cross\\\
+• Neon\\\
+• Mirror\\\
+\\\
+
+
+\newpage
+
+\section{Foramt Of Picture}
+This program supports 3 photo formats:\\\\
+  3.1 JPG-JPEG
+\\\   3.2 PNG
+\\\   3.3 BITMAP(BMP)
+\\\
+\\\
+In this case we write a function for processing on bmp 
+and use stblib for processing jpg and png.\\\
+
+\hrule
+
+
+
+\section{Main.c}
+
+In the main function of this program, we gathered all of the functions and sections of the program together .
+\\\ Then we use switch case to get input from user for choosing which format of picture he give to the program and which filte the user want to apply on picture and how the user want to give the path of picture to the program(Url ,e-mail or system file ) . 
+
+% Define a new mdframed environment for the C code
+\newmdenv[linecolor=black,linewidth=1pt]{cbox}
+
+% In the Headers subsection:
+\subsection{Headers}
+
+Here's the C code for the headers and defines section:
+\begin{cbox}
+\begin{minted}[linenos=true, breaklines, fontsize=\footnotesize]{c}
+//HEADERS AND DIFINES
+#include "stdio.h"
+#include "stdlib.h"
+
+#define STB_IMAGE_IMPLEMENTATION
+#define STB_IMAGE_WRITE_IMPLEMENTATION
+
+#include "stb_image.h"
+#include "stb_image_write.h"
+#include "stb_image_resize.h"
+#include <conio.h>
+#include "curl.h"
+#include <string.h>
+#include "math.h"
+#include <winsock2.h>
+#include <ws2tcpip.h>
+
+
+#define line_len 10000
+
+#pragma comment(lib, "ws2_32.lib")
+\end{minted}
+\end{cbox}
+
+
+\subsection{Filters}
+This section is for applying the filters and filter's functions are written in it.
+\subsection{Format Functions}
+This section is for choosing format of the picture.\\\
+There is 3 function :\\\
+• Bmp
+• Jpg
+• Png
+\\\
+and each of them is about (opening the image , closing the image , applying filters , saving and writing images)
+
+\subsection{E-MAIL Section}
+In this section :\\\
+first . we fetched the email and attachment with this c code .
+\begin{cbox}
+\begin{minted}[linenos=true, breaklines, fontsize=\footnotesize]{c}
+void fetchemail() {
+    //GMAIL DL PIC
+    CURL *curl;
+    CURLcode res;
+    FILE *file;
+
+    // Set up libcurl
+    curl_global_init(CURL_GLOBAL_DEFAULT);
+    curl = curl_easy_init();
+    if (curl) {
+        // Set IMAP server and account details
+        char email[] = "parsaali0002@gmail.com"; // Replace with your Gmail address
+        char password[] = "sjkhqzzmcrjidifo"; // Replace with your Gmail password
+
+        curl_easy_setopt(curl, CURLOPT_CAINFO,
+                "example path");
+
+        // Set the mailbox name and UID
+        char mailbox[] = "INBOX";
+        int uid = 6;
+
+        ///In this section u can add uid functions (plus or mines) for
+        ///calling and getting uid from file for saving the uid and change it
+        ///after each email
+
+
+        // Create the URL with the UID
+        char url[100];
+        sprintf(url, "imaps://imap.gmail.com/%s;UID=%d", mailbox, uid);
+
+        // Connect to the IMAP server and log in
+        curl_easy_setopt(curl, CURLOPT_USERNAME, email);
+        curl_easy_setopt(curl, CURLOPT_PASSWORD, password);
+        curl_easy_setopt(curl, CURLOPT_URL, url);
+
+        // Perform the fetch request
+        res = curl_easy_perform(curl);
+        if (res != CURLE_OK) {
+            printf("Failed to fetch email: %s\n", curl_easy_strerror(res));
+            return;
+        }
+
+        // Open a file to save the fetched email
+        file = fopen("C:\\Users\\parca\\Desktop\\networkingphotoshopproject\\att.txt", "wb");
+        if (!file) {
+            printf("Error opening file for writing.");
+            return;
+        }
+
+        // Set the write callback function to write data into the file
+        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, writeCallback);
+        curl_easy_setopt(curl, CURLOPT_WRITEDATA, file);
+
+        // Perform the fetch request and save the email content to the file
+        res = curl_easy_perform(curl);
+        if (res != CURLE_OK) {
+            printf("Failed to fetch email: %s\n", curl_easy_strerror(res));
+            return;
+        }
+
+        // Clean up and close the file
+        fclose(file);
+
+        // Clean up and close the IMAP session
+        curl_easy_cleanup(curl);
+    } else {
+        printf("Error initializing libcurl.\n");
+        return;
+    }
+
+    // Clean up libcurl
+    curl_global_cleanup();
+
+}
+
+\end{minted}
+\end{cbox}
+\begin{cbox}
+\begin{minted}[linenos=true, breaklines, fontsize=\footnotesize]{c}
+size_t writeCallback(void *contents, size_t size, size_t nmemb, void *userp) {
+    FILE *file = (FILE *) userp;
+    size_t written = fwrite(contents, size, nmemb, file);
+    return written;
+}
+
+\end{minted}
+\end{cbox}
+
+2.cut the desired fetched text for decoding with this c code :
+\begin{cbox}
+\begin{minted}[linenos=true, breaklines, fontsize=\footnotesize]{c}
+//writing decode fetched txt to a file
+void finddecodetxt(const char *text, const char *outputFileName) {
+    char check[16] = "X-Attachment-Id:";
+    const char *decodetxtstart = strstr(text, check);
+    if (decodetxtstart == NULL) {
+        printf("there ins't exist fetch decode txt!\n");
+        return;
+    }
+
+    decodetxtstart += strlen("X-Attachment-Id:");
+
+    decodetxtstart = strstr(decodetxtstart, "\n\n");
+    if (decodetxtstart == NULL) {
+        printf("Invalid text format\n");
+        return;
+    }
+
+    decodetxtstart += strlen("\n\n");
+
+    const char *decodetxtend = strstr(decodetxtstart, "\n--");
+    if (decodetxtend == NULL) {
+        printf("Invalid text format. Base64 code end not found.\n");
+        return;
+    }
+
+    size_t decodetxtlen = decodetxtend - decodetxtstart;
+    char *decodetxt = (char *) malloc(decodetxtlen + 1);
+    strncpy(decodetxt, decodetxtstart, decodetxtlen);
+    decodetxt[decodetxtlen] = '\0';
+
+    FILE *outputFile = fopen(outputFileName, "w");
+    if (outputFile == NULL) {
+        printf("Failed to open the decode txt file.\n");
+        return;
+    }
+
+    fprintf(outputFile, "%s", decodetxt);
+    fclose(outputFile);
+
+    printf("image fetch txt extracted and saved to '%s'.\n", outputFileName);
+    free(decodetxt);
+}
+
+//extract decode fetched txt from total fetched file txt
+void extractdecodetxt() {
+    FILE *att;
+    char line[line_len];
+    const char *decode = "C:\\Users\\parca\\Desktop\\networkingphotoshopproject\\decode.txt";
+
+    att = fopen("C:\\Users\\parca\\Desktop\\networkingphotoshopproject\\att.txt", "r");
+    if (att == NULL) {
+        printf("\nError in Opening the attachment txt temp");
+        getch();
+        return;
+    }
+
+    fseek(att, 0, SEEK_END);
+    long file_size = ftell(att);
+    rewind(att);
+
+    char *temp = (char *) malloc(file_size + 1);
+    fread(temp, sizeof(char), file_size, att);
+    temp[file_size] = '\0';
+
+    finddecodetxt(temp, decode);
+
+    free(temp);
+    fclose(att);
+}
+
+\end{minted}
+\end{cbox}
+3.and after that we decode the image fetched txt
+\\\
+you can see the decode's code in decode section. 
+\subsection{Url Section}
+In this section we talk about our 2 way for downloading from 
+desired url
+\subsubsection{Socket}
+Here's C code for downloading photo from url with socket protocols
+\begin{cbox} \begin{minted}[linenos=true, breaklines, fontsize=\footnotesize]{c} 
+void dlfromsocket() {
+    WSADATA wsaData;
+    SOCKET sock;
+    struct addrinfo hints, *res;
+    char request[1024];
+    int bytesReceived, totalBytesReceived;
+    FILE *fp;
+
+    // Initialize Winsock
+    if (WSAStartup(MAKEWORD(2, 2), &wsaData) != 0) {
+        printf("WSAStartup failed\n");
+        return;
+    }
+
+    // Create socket
+    sock = socket(AF_INET, SOCK_STREAM, 0);
+    if (sock == INVALID_SOCKET) {
+        printf("Error creating socket\n");
+        WSACleanup();
+        return;
+    }
+
+    // Resolve URL to IP address
+    memset(&hints, 0, sizeof(hints));
+    hints.ai_family = AF_INET;
+    hints.ai_socktype = SOCK_STREAM;
+    if (getaddrinfo("www.cs.sjsu.edu", "80", &hints, &res) != 0) {
+        printf("Error resolving URL\n");
+        closesocket(sock);
+        WSACleanup();
+        return;
+    }
+
+    // Connect to server
+    if (connect(sock, res->ai_addr, res->ai_addrlen) == SOCKET_ERROR) {
+        printf("Error connecting to server\n");
+        freeaddrinfo(res);
+        closesocket(sock);
+        WSACleanup();
+        return;
+    }
+
+    // Send HTTP GET request
+    sprintf(request,
+            "GET /~pearce/modules/lectures/web/html/HTTP_files/image001.jpg HTTP/1.1\r\nHost:www.cs.sjsu.edu\r\n\r\n");
+    send(sock, request, strlen(request), 0);
+
+    // Receive response
+    totalBytesReceived = 0;
+    fp = fopen("./tempsocket.txt", "wb");
+    while ((bytesReceived = recv(sock, request, sizeof(request), 0)) > 0) {
+        fwrite(request, 1, bytesReceived, fp);
+        totalBytesReceived += bytesReceived;
+        printf("%c", bytesReceived);
+    }
+
+
+    // Clean up
+    freeaddrinfo(res);
+    closesocket(sock);
+    WSACleanup();
+    fclose(fp);
+
+    printf("Downloaded %d bytes\n", totalBytesReceived);
+    return;
+}
+
+\end{minted} 
+\end{cbox}
+
+This is how we download the picture from url with socket.\\\
+
+
+This C code is about when we download the image we should split the encoded text for writing the image.  
+\begin{cbox} 
+\begin{minted}[linenos=true, breaklines, fontsize=\footnotesize]{c} 
+void cuttheencodedtxtofimagefromdltxt() {
+    FILE *fs, *fn;
+    fs = fopen("example path", "rb");
+    if (fs == NULL) {
+        printf("\nError in Opening the dledtxt file");
+        getch();
+        return;
+    }
+    fn = fopen("C:\\project\\fetch\\tempcutsocket.txt", "w");
+    if (fn == NULL) {
+        printf("\nError in Opening the encodedtxtofimage file");
+        getch();
+        return;
+    }
+    char c;
+    int count = 0, flag = 0;
+    while (1) {
+        if (feof(fs)) {
+            break;
+        }
+        c = fgetc(fs);
+        if (c == '\n') {
+            count++;
+            if (count == 2) {
+                flag = 1;
+                break;
+            }
+        } else {
+            count = 0;
+        }
+    }
+    int i = 0;
+    while (flag) {
+        if (feof(fs)) {
+            break;
+        }
+        c = fgetc(fs);
+        fputc(c, fn);
+        i++;
+        if (i == 274) {
+            continue;
+        }
+    }
+    fclose(fs);
+    fclose(fn);
+    printf("cut done!\n");
+    return;
+}
+
+\end{minted} 
+\end{cbox}
+
+And the c code is below is about how we call socket's way.
+\begin{cbox} \begin{minted}[linenos=true, breaklines, fontsize=\footnotesize]{c} 
+void urlwithsocket() {
+    dlfromsocket();
+    cuttheencodedtxtofimagefromdltxt();
+    return;
+}
+
+\end{minted} 
+\end{cbox}
+
+\subsubsection{CURL}
+And Here is our curl protocol for download image  from url.
+\begin{cbox}
+\begin{minted}[linenos=true, breaklines, fontsize=\footnotesize]{c}
+void download_image(const char *url, const char *filename) {
+    FILE *file = fopen(filename, "wb");
+    if (!file) {
+        printf("Failed to open the file for writing.\n");
+        return;
+    }
+
+    // Create the command to download the image using curl
+    char command[256];
+    snprintf(command, sizeof(command), "curl -o \"%s\" \"%s\"", filename, url);
+
+    // Execute the command using the system function
+    int result = system(command);
+
+    if (result == 0) {
+        printf("Image downloaded successfully.\n");
+    } else {
+        printf("Failed to download the image.\n");
+    }
+
+    fclose(file);
+}
+
+void url() {
+
+    //url for example:(this is a png file)
+    //const char* url = int c, i = 0, j = 0, m;
+    char url[1000], path[1000];
+    printf("please write your url link:");
+    getchar();
+    for (; (c = getchar()) != '\n'; i++) {
+        url[i] = c;
+        url[i + 1] = '\0';
+    }
+
+    printf("please write your path for saving downloded image :");
+    for (; (c = getchar()) != '\n'; j++) {
+        path[j] = c;
+        path[j + 1] = '\0';
+    }
+
+    //const char* filename = "c";
+    download_image(url, path);
+
+    printf("%s", url);
+    printf("\n%s", path);
+
+    if (path[j - 1] == 'p') {
+        bmp(path);
+    } else if (path[j - 2] == 'n') {
+        png(path);
+    } else {
+        jpg(path);
+    }
+    return;
+}
+
+
+\end{minted}
+\end{cbox}
+\subsection{Main Section}
+\subsection{Rating Section}
+\begin{cbox}
+\begin{minted}[linenos=true, breaklines, fontsize=\footnotesize]{c}
+printf("if you are satisfied ,please enter a number between 1 and 10 for rating to the program and you dont please enter 0:");
+    scanf("%d", &rate);
+
+    printf("\nyour rate is : %d", rate);
+
+\end{minted}
+\end{cbox}
+
+This C code is for rating the program.
+
+\subsection{Contact With Us}
+\begin{cbox}
+\begin{minted}[linenos=true, breaklines, fontsize=\footnotesize]{c}
+printf("\nIf you want to contact with us you can send your opinion or problem to our program's e-mail (parsaali0002@gmail.com)!");
+
+\end{minted}
+\end{cbox}
+
+This C code explain how user can contact with us .
+\\\
+
+
+\ 
+
+\section{Decode}
+Here's the C code for decoding the image
+\begin{cbox}
+\begin{minted}[linenos=true, breaklines, fontsize=\footnotesize]{c}
+
+//decodefile func for decoding file to img
+void decodeFile(const char *inputFile, char outputFile[]) {
+    char command[456];
+    sprintf(command, "certutil -decode %s %s", inputFile, outputFile);
+    system(command);
+}
+
+//decoding sec
+void decodefetchtxttoimg(char path[], int i) {
+    const char *inputFileName = "C:\\Users\\parca\\Desktop\\networkingphotoshopproject\\decode.txt";
+
+    printf("\n%s", path);
+    decodeFile(inputFileName, path);
+
+    if (path[i - 1] == 'p') {
+        bmp(path);
+    } else if (path[i - 2] == 'n') {
+        png(path);
+    } else {
+        jpg(path);
+    }
+    return;
+}
+
+\end{minted}
+\end{cbox}
+
+\section{UID}
+in this section we write 2 function for saving uid after and change it after sending each email.
+These functions :\\\
+• uidmines\\\
+• uidplus\\\
+\begin{cbox} 
+\begin{minted}[linenos=true, breaklines, fontsize=\footnotesize]{c}
+int uidplus() {
+    char c;
+    int uid = 0;
+    FILE *file = fopen("C:\\Users\\parca\\Desktop\\networkingphotoshopproject\\uid.txt", "r");
+    while (1) {
+        if (feof(file)) {
+            break;
+        }
+        c = fgetc(file);
+        if (c >= '0' && c <= '9') {
+            uid = (uid * 10) + (c - '0');
+        }
+    }
+    rewind(file);
+    fclose(file);
+    file = fopen("C:\\Users\\parca\\Desktop\\networkingphotoshopproject\\uid.txt", "w");
+    int i = uid + 1;
+    fprintf(file, "%d", i);
+    fclose(file);
+    return uid;
+}
+
+\end{minted}
+\end{cbox}
+
+\begin{cbox} 
+\begin{minted}[linenos=true, breaklines, fontsize=\footnotesize]{c}
+int uidmines() {
+    char c;
+    int uid = 0;
+    FILE *file = fopen("C:\\Users\\parca\\Desktop\\networkingphotoshopproject\\uid.txt", "r");
+    while (1) {
+        if (feof(file)) {
+            break;
+        }
+        c = fgetc(file);
+        if (c >= '0' && c <= '9') {
+            uid = (uid * 10) + (c - '0');
+        }
+    }
+    rewind(file);
+    fclose(file);
+    file = fopen("C:\\Users\\parca\\Desktop\\networkingphotoshopproject\\uid.txt", "w");
+    int i = uid - 1;
+    fprintf(file, "%d", i);
+    fclose(file);
+    return 0;
+}
+\end{minted}
+\end{cbox}
+\newpage
+\section{GUI}
+we desiged 2 gui for this progrm but we don't link them to our c program.
+\\\
+1.first one with QT and python.
+\\\
+2.second one with powershell gui.
+\\\
+\hrule
+\section{LaTex}
+We Write this document with LaTex.
+\newpage
+
+
+\\\
+\section{Thanks}
+
+We hope this document is useful for you.
+
+\end{document}
